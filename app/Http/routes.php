@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
+Route::get('/', 'SchedulizerController@home');
 
 /**
  * Home page of Schedulizer
