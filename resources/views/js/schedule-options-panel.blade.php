@@ -168,7 +168,7 @@
             if($(this).data('action') === 'remove'){
                 $.ajax({
                     type: 'post',
-                    url: '{{ URL('schedulizer/remove') }}',
+                    url: '{{ URL('remove') }}',
                     data: {
                         "class": $className,
                         _token: "{{ csrf_token() }}" // Laravel needs a csrf
@@ -231,7 +231,7 @@
          */
         function getCartQuantity() {
             $('#jewel').text('');
-            $.getJSON("{{ url('schedulizer/cart') }}", function(data) {
+            $.getJSON("{{ url('cart') }}", function(data) {
                 if(data.quantity > 0) {
                     $('#jewel')
                             .show("slide", { direction: "up" }, 300)

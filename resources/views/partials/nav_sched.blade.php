@@ -18,10 +18,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li
-                    class="{{ Request::is('schedulizer/search') ? 'active' : '' }}"
+                    class="{{ Request::is('search') ? 'active' : '' }}"
                 >
                     <a
-                        href="{{ url('/schedulizer/search') }}"
+                        href="{{ url('/search') }}"
                     >
                         <span class="glyphicon glyphicon-search"></span>
                         Search
@@ -29,10 +29,10 @@
                 </li>
                 @if(Session::has('q'))
                     <li
-                        class="{{ Request::is('schedulizer/results') ? 'active' : '' }}"
+                        class="{{ Request::is('results') ? 'active' : '' }}"
                     >
                         <a
-                            href="{{ url('/schedulizer/results') }}?q={{ Session::get('q') }}"
+                            href="{{ url('/results') }}?q={{ Session::get('q') }}"
                         >
                             <span class="glyphicon glyphicon-align-justify"></span>
                             Results
@@ -40,10 +40,10 @@
                     </li>
                 @endif
                 <li
-                    class="{{ Request::is('schedulizer/schedule') ? 'active' : '' }}"
+                    class="{{ Request::is('schedule') ? 'active' : '' }}"
                 >
                     <a
-                        href="{{ url('/schedulizer/schedule') }}"
+                        href="{{ url('/schedule') }}"
                     >
                     <span class="glyphicon glyphicon-calendar"></span>
                     Schedule
@@ -58,7 +58,7 @@
 
             {{-- Show search bar if we're in the results page --}}
             <ul class="nav navbar-nav navbar-right">
-                @if(Request::is('schedulizer/results') || Request::is('schedulizer/schedule'))
+                @if(Request::is('results') || Request::is('schedule'))
                     @include('search.form')
                 @endif
             </ul>

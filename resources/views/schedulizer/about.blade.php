@@ -8,7 +8,7 @@
     <div class="jumbotron">
         <h1>Drexel Schedulizer</h1>
         <p class="lead">Made by Drexel students for Drexel students, the Drexel Schedulizer allows you to find classes and generate the perfect schedule.</p>
-        <p><a class="btn btn-lg btn-success" href="{{ URL('schedulizer/search') }}" role="button">Search for classes now!</a></p>
+        <p><a class="btn btn-lg btn-success" href="{{ URL('search') }}" role="button">Search for classes now!</a></p>
     </div>
 
     <div class="row featurette">

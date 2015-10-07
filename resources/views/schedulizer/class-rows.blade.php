@@ -1,5 +1,5 @@
 <td><a
-        href="{{ URL('schedulizer/results?q=' . $class->subject_code . ' ' . $class->course_no) }}"
+        href="{{ URL('results?q=' . $class->subject_code . ' ' . $class->course_no) }}"
 
         {{-- TODO: Refactor this duplicate if-statement --}}
         @if(

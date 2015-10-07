@@ -12,7 +12,7 @@
 
     <form
         method="GET"
-        action="{{ URL('schedulizer/results') }}"
+        action="{{ URL('results') }}"
         accept-charset="UTF-8"
         class="form-inline global-search" role="form">
         <div class="form-group">
