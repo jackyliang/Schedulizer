@@ -1,0 +1,108 @@
+.ui-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  display: none;
+  min-width: 160px;
+  _width: 160px;
+  padding: 4px 0;
+  margin: 2px 0 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border-color: #ccc;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+
+  .ui-menu-item > a.ui-corner-all {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+
+    &.ui-state-hover, &.ui-state-active, &.ui-state-focus {
+      color: #ffffff;
+      text-decoration: none;
+      background-color: $material-teal;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      background-image: none;
+    }
+  }
+}
+
+
+
+.col-lg-10 {
+  width: 100%;
+}
+
+.navbar-default #formID #q {
+  min-width: 325px;
+}
+.navbar-default .navbar-collapse {
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .navbar-default #formID #q {
+    min-width: 100%;
+  }
+  .navbar-default .navbar-collapse {
+    text-align: left;
+  }
+}
+
+.ui-helper-hidden-accessible {
+  display:none;
+}
+
+/* center search */
+
+.global-search {
+  text-align:center;
+  padding:10px;
+  .ui-helper-hidden-accessible {
+    display:none;
+  }
+}
+.global-search * {
+  display:inline-block;
+  margin-bottom:0;
+}
+
+.global-search .form-control {
+  width:200px;
+}
+
+.global-search a {
+  display:block;
+  padding-top:0px;
+}
+
+@media (min-width:500px){
+  .global-search {
+    padding: 0px 0;
+    text-align:center;
+  }
+
+  .global-search .form-control {
+    width:400px;
+  }
+}

@@ -1,0 +1,91 @@
+/*  */
+#fixed-button {
+  position: fixed;
+  color: white;
+  bottom: 20px;
+  right: 20px;
+  box-shadow: 0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);
+  text-align: right; /* keep the text to right */
+  font-size: 11px;   /* reduce the font-size to accomodate */
+  padding-top: 0px; padding-right: 6px; /* adjust the padding to keep the text on top-left */
+}
+
+#fixed-button::before{
+  display: block; position: absolute; /* position relative to the parent button */
+  top: 0%;
+  left: 50%;                 /* position to center with enough space for text */
+  font-size: 26px; padding-top: 15px; /* reset the changed properties of parent */
+  color: white;
+  transform: translate(-50%, 0%);     /* to make it centered */
+}
+#fixed-button:empty::before{
+  left: 50%;
+}
+
+/* Notification style for the FAB jewel */
+.jewel {
+  position: absolute;
+  display: block;
+  top: 5px;
+  right: 5px;
+  height: 16px;
+  width: 16px;
+  font-family: Tahoma, Verdana;
+  font-size:11px;
+  font-weight:bold;
+  text-align: center;
+  line-height: 150% !important;
+  color: White;
+  background-color: $material-design-red-600;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Apply a style to the FAB jewel */
+.jewel:empty::before {
+  left:50%;
+}
+
+/* Remove the panel padding for options in the Schedule page*/
+.panel-body.panel-options{
+  padding: 15px;
+}
+
+/* Set a max height to the time span drop down in the Schedule page */
+.dropdown-menu.time-span{
+  max-height: 300px; /*Provide height in pixels or in other units as per your layout*/
+  overflow-y: auto; /*Provide an auto overflow to diaply scroll*/
+}
+
+/* Refresh button from Schedule page */
+.btn.refresh {
+  float: right;
+  margin: 0px 0px;
+}
+
+/* Remove the bottom margin in the classes panel from the Schedule page */
+.list-group.class-cart {
+  margin-bottom: 0px;
+}
+/* Circle glyphicon */
+.glyphicon.glyphicon-dot:before {
+  content: "\25cf";
+  font-size: 1.7em;
+}
+
+#chart_div {
+  width	: 100%;
+  height	: 500px;
+}
+
+#curve_chart {
+  width	: 100%;
+  height	: 500px;
+}
+
+#curve_chart_2 {
+  width	: 100%;
+  height	: 500px;
+}
