@@ -14,7 +14,7 @@ use DBI;
 $|++; #autoflush disk buffer
 
 # This script works directly with our SQLite DB  
-my $dbFile = '../database.sqlite';
+my $dbFile = '../../database/database.sqlite';
 my $dsn      = "dbi:SQLite:dbname=$dbFile";
 my $user     = "";
 my $password = "";
