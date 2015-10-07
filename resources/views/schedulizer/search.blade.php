@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="page-heading">
-        <h1>Search for Fall 2015 Classes</h1>
+        <h1>Search for Winter 2015 Classes</h1>
     </div>
 
     <form
@@ -21,7 +21,7 @@
                 class="form-control floating-label"
                 id="q"
                 name="q"
-                placeholder="i.e. ECE 201, Digital Logic, Kandasamy, or 10121"
+                placeholder="i.e. ECE 200, Digital Logic, Kandasamy, or 22584"
             >
         </div>
         <button type="submit" class="btn btn-material-teal shadow-z-1">
