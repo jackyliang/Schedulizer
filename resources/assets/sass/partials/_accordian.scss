@@ -1,0 +1,47 @@
+.hiddenRow {
+  padding: 0 !important;
+  border-top: 0 none;
+  margin-bottom: 2px;
+  margin-top: -2px;
+  overflow: auto;
+  position: relative;
+  top: 1px;
+}
+
+.ul {
+  margin-top: 7px;
+}
+
+.moreMuted {
+  color: $moreMuted;
+}
+
+.moreMuted:hover {
+  color: $moreMuted;
+}
+
+/* Style and position of the add to cart button  */
+.btn.margin-add-to-cart {
+  margin-left: 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.btn.btn-xs.btn-font-12-px {
+  font-size: 12px;
+}
+
+/* Position of the class name */
+h3.margin-class-name {
+  margin: 20px 0px 0px 0px;
+}
+
+/* Position of the class type*/
+.margin-class-type {
+  margin: 0px 20px 0px 20px;
+}
+
+/* Remove the panel padding */
+.panel-body{
+  padding: 0px;
+}

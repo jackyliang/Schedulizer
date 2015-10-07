@@ -1,0 +1,32 @@
+.page-heading{
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  text-align: center;
+  line-height: 1;
+
+  &:after {
+    content: '';
+    width: 70px;
+    height: 3px;
+    display:block;
+    background: $brandColor;
+    margin: 18px auto 14px;
+  }
+}
+.page-heading-results{
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0px;
+  text-align: center;
+  line-height: 1;
+
+  &:after {
+    content: '';
+    width: 70px;
+    height: 3px;
+    display:block;
+    background: $brandColor;
+    margin: 18px auto 0px;
+  }
+}
