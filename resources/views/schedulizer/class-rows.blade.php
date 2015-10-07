@@ -21,12 +21,8 @@
     @if($class->instructor != "STAFF")
     <a
         href=
-        "{{ 'http://www.ratemyprofessors.com/search.jsp?' .
-            'queryBy=teacherName&' .
-            'queryoption=HEADER&' .
-            'query=' . end($name) . '&' .
-            'facetSearch=true&' .
-            'schoolName=drexel+university'
+        "{{ 'http://www.google.com/search?' .
+            'q=' . $name . '+drexel'
         }}"
         target="_blank"
         {{-- TODO: Refactor this duplicate if-statement --}}

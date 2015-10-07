@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a
-                class="navbar-brand" href="{{ url('/schedulizer') }}"
+                class="navbar-brand" href="{{ url('/') }}"
             >
                 <span class="glyphicon glyphicon-education"></span>
                 Schedulizer
