@@ -105,7 +105,7 @@
          * Updates the global URL that's used to query the class generation API
          */
         function getUpdatedURL() {
-            url = '{{ URL('schedulizer/generate') }}' + '?from=' + from + '&to=' + to + '&limit=' + limit + '&full=' + full + '&campus=' + campus;
+            url = '{{ URL('generate') }}' + '?from=' + from + '&to=' + to + '&limit=' + limit + '&full=' + full + '&campus=' + campus;
             return url;
         }
 
