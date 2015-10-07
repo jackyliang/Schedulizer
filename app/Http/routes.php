@@ -16,63 +16,48 @@ Route::get('/', 'SchedulizerController@home');
 /**
  * Home page of Schedulizer
  */
-Route::get('schedulizer/about', 'SchedulizerController@about');
-
-/**
- * UGC Roster Check form
- */
-Route::get('ugc', 'UGCController@create');
-
-/**
- * UGC Roster Check results
- */
-Route::post('ugc/verify', 'UGCController@verify');
+Route::get('about', 'SchedulizerController@about');
 
 /**
  * Schedulizer class search form
  */
-Route::get('schedulizer/search', 'SchedulizerController@search');
+Route::get('search', 'SchedulizerController@search');
 
 /**
  * Schedulizer generated schedules
  */
-Route::get('schedulizer/schedule', 'SchedulizerController@schedule');
+Route::get('schedule', 'SchedulizerController@schedule');
 
 /**
  * Add class to session
  */
-Route::post('schedulizer/add', 'SchedulizerController@add');
+Route::post('add', 'SchedulizerController@add');
 
 /**
  * Remove class from session
  */
-Route::post('schedulizer/remove', 'SchedulizerController@remove');
+Route::post('remove', 'SchedulizerController@remove');
 
 /**
  * API for classes generated
  */
-Route::get('schedulizer/generate', 'SchedulizerController@generate');
+Route::get('generate', 'SchedulizerController@generate');
 
 /**
  * Clear the cart
  * TODO: Change this to POST
  */
-Route::get('schedulizer/cart/clear', 'SchedulizerController@clear');
+Route::get('cart/clear', 'SchedulizerController@clear');
 
 /**
  * TODO: Remove this test API
  */
-Route::get('schedulizer/classes', 'SchedulizerController@classes');
+Route::get('classes', 'SchedulizerController@classes');
 
 /**
  * Get cart contents
  */
-Route::get('schedulizer/cart', 'SchedulizerController@cart');
-
-/**
- * TODO: Schedulizer home page
- */
-Route::get('schedulizer', 'SchedulizerController@home');
+Route::get('cart', 'SchedulizerController@cart');
 
 /**
  * Schedulizer autocomplete API
@@ -82,19 +67,7 @@ Route::get('autocomplete', 'SchedulizerController@autocomplete');
 /**
  * Schedulizer class search results page
  */
-Route::get('schedulizer/results', 'SchedulizerController@results');
-
-/**
- * StockTwits Parse Data
- */
-Route::get('stocktwits/results', 'StockTwitsController@results');
-
-Route::get('groupthink/search', 'StockTwitsController@search');
-
-/**
- * StockTwits Results Page
- */
-Route::get('groupthink', 'StockTwitsController@home');
+Route::get('results', 'SchedulizerController@results');
 
 /**
  * Authentication
