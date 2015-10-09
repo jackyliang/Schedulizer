@@ -17,7 +17,7 @@
 <td> {{ $class->day}} </td>
 <td> {{ $class->time}} </td>
 <td>
-    <?php $name = explode(' ', $class->instructor); ?>
+    <?php $name = $class->instructor ?>
     @if($class->instructor != "STAFF")
     <a
         href=
