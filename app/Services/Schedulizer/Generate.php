@@ -105,6 +105,8 @@ class Generate {
             return true;
         elseif ($campus == 1 && $course->campus == "University City")
             return true;
+        elseif ($campus == 1 && $course->campus == "Online")
+            return true;
         elseif ($course->campus == "" || $course->campus == "TBD")
             return true;
         else return false;
