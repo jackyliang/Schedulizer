@@ -43,7 +43,7 @@ class DrexelClass extends Model {
                 )
                 ->orWhere('instructor', 'like', '%' . $searchTerm . '%')
                 ->orWhere('crn', 'like', '%' . $searchTerm . '%')
-                ->orWhere('instr_type', 'like', '%' . $searchTerm . '%')
+                ->orWhere('instr_method', 'like', '%' . $searchTerm . '%')
                 ;
         });
     }
