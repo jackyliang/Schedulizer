@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta property="og:title" content="Drexel Schedulizer" />
     <meta property="og:site_name" content="Drexel Schedulizer" />
-    <meta property="og:description" content="Find your classes and generate the perfect schedule in under a few minutes." />
+    <meta property="og:description" content="Find your classes and generate the perfect schedule in under a few minutes. Now available for Drexel University." />
     <meta property="og:image" content="{{ URL('images/1.jpg') }}" />
     <meta property="og:image" content="{{ URL('images/2.jpg') }}" />
     <meta property="og:image" content="{{ URL('images/3.jpg') }}" />
