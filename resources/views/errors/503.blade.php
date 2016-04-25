@@ -34,7 +34,8 @@
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Be right back.</div>
+				<div class="title">Don't worry!</div>
+                <div class="title">Schedulizer will be right back <3.</div>
 			</div>
 		</div>
 	</body>
