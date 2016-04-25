@@ -1,0 +1,42 @@
+users table -
+id    name    email
+1     Jacky   bluelegopiece@hotmail.com
+
+user_classes -
+id    user_id   class_id
+1     1         1
+2     1         2
+3     1         3
+
+classes -
+id    crn
+1     4000
+2     4001
+3     4003
+
+user hasMany classes
+
+## Installing DBI and SQLite for Perl
+aptitude install libdbi-perl
+apt-get install libdbd-sqlite3-perl
+
+DELETE FROM classes, class_urls, subject_urls
+
+When assigning the year, make sure to increment the year by 1
+
+1. getDepartmentLists.pl [nightly]
+2. getListOfClasses.pl [update enroll numbers for current year]
+   The key 'term' corresponds to the index of the item in the search
+   bar on TMS. So to check if the term is correct, just check if term
+   corresponds to the item in the dropdown. 
+3. getListOfClassesFromSubjects.pl [update enroll numbers from Fall
+term]
+4. getClassDetails [once a night or less]
+   If the 'term' (i.e. Summer/Spring) and 'year' is right (i.e. 2018)
+   in the class_urls DB, simply match the right term in the
+   getClassDetails.pl script and run it.
+
+When deploying:
+
+1. Roll back three times (until create_classes)
+2. Run scrape scripts
