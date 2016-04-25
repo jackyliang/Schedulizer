@@ -32,7 +32,7 @@ my $body=''; #response body
 my @termNames = ('', 'Fall', 'Winter', 'Spring', 'Summer');
 
 my $year = 2016;
-my $term = 'Winter';
+my $term = 'Summer';
 
 my $firstUrl = "https://duapp2.drexel.edu/webtms_du/app?page=Home&service=page";
 
