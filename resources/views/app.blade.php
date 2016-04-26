@@ -9,6 +9,7 @@
     @include('libs.libs')
     @include('analytics.google')
     @include('analytics.sumome')
+    @include('analytics.heap')
 
 </head>
 <body>
