@@ -9,7 +9,7 @@ class DrexelClassURL extends Model {
      *
      * @var string
      */
-    protected $table = 'class_urls';
+    protected $table = 'classes';
 
     public function scopeTimestampOfCRN($query, $crn) {
         return $query
