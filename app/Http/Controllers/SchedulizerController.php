@@ -306,7 +306,9 @@ class SchedulizerController extends Controller {
             // One section can contain multiple classes of the same instruction
             // type.
             $section = array();
+
             foreach($courses as $course) {
+
                 // Create a new class with the name, day, time, CRN, campus, and
                 // enroll
                 $oneCourse = new Course(
@@ -316,7 +318,11 @@ class SchedulizerController extends Controller {
                     $course['crn'],
                     $course['campus'],
                     $course['enroll'],
-                    $course['short_name']
+                    $course['short_name'],
+                    $course['instructor'],
+                    $course['max_enroll'],
+                    $course['building'],
+                    $course['instr_method']
                 );
 
                 // Push the class to the sections array
