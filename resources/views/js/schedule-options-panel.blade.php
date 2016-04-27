@@ -266,8 +266,19 @@
                     week: 'ddd' // Only show day of the week names
                 },
                 displayEventTime: true,
-                allDayText: 'Online/TBD'
-            });
+                allDayText: 'Online/TBD',
+                eventRender: function(event, element) {
+//                    $(element).tooltip({placement:'auto', delay: { "show": 300, "hide": 100 }, html:true, title: '<p></p><p>' + event.instructor + '</p><p>' +  'Enrollment: ' + event.enroll + ' / ' + event.max_enroll + '</p>'});
+                    $(element).tooltip({
+                        placement:'auto',
+                        delay: { "show": 300, "hide": 100 },
+                        html:true,
+                        title: '<div align="left"><dt>' + event.instructor +
+                        '</dt><dd><b>Size:</b> ' + event.enroll + ' / ' + event.max_enroll +
+                        '</dd><dd><b>Type:</b> ' + event.instr_method + '</dd>' +
+                        '</dd><dd><b>Building:</b> ' + event.building + '</dd></div>'
+                    });
+                }});
 
             function GetDateString(myDate){
                 // GET CURRENT DATE
@@ -336,12 +347,20 @@
                                     var lastWeek = moment().subtract(6, 'days').format("YYYY-MM-DD hh:mm a");
                                     var nextWeek = moment().add(6, 'days').format("YYYY-MM-DD hh:mm a");
 
+                                    console.log(obj[j]);
+
                                     events.push({
                                         title: obj[j].short_name,
                                         allDay: true,
                                         start: lastWeek,
                                         end: nextWeek,
-                                        color: obj[j].color
+                                        color: obj[j].color,
+                                        instructor: obj[j].instructor,
+                                        campus: obj[j].campus,
+                                        enroll: obj[j].enrollment,
+                                        max_enroll: obj[j].max_enroll,
+                                        instr_type: obj[j].instr_type,
+                                        building: obj[j].building
                                     });
                                 }
                                 // End THIS iteration of the for-loop but don't
@@ -362,35 +381,65 @@
                                         title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate,
-                                        color: obj[j].color
+                                        color: obj[j].color,
+                                        instructor: obj[j].instructor,
+                                        campus: obj[j].campus,
+                                        enroll: obj[j].enrollment,
+                                        max_enroll: obj[j].max_enroll,
+                                        instr_method: obj[j].instr_method,
+                                        building: obj[j].building
                                     });
                                 } else if (daysArray[k] == 'T' && test_date.is().tuesday()) {
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate,
-                                        color: obj[j].color
+                                        color: obj[j].color,
+                                        instructor: obj[j].instructor,
+                                        campus: obj[j].campus,
+                                        enroll: obj[j].enrollment,
+                                        max_enroll: obj[j].max_enroll,
+                                        instr_method: obj[j].instr_method,
+                                        building: obj[j].building
                                     });
                                 } else if (daysArray[k] == 'W' && test_date.is().wednesday()) {
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate,
-                                        color: obj[j].color
+                                        color: obj[j].color,
+                                        instructor: obj[j].instructor,
+                                        campus: obj[j].campus,
+                                        enroll: obj[j].enrollment,
+                                        max_enroll: obj[j].max_enroll,
+                                        instr_method: obj[j].instr_method,
+                                        building: obj[j].building
                                     });
                                 } else if (daysArray[k] == 'R' && test_date.is().thursday()) {
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate,
-                                        color: obj[j].color
+                                        color: obj[j].color,
+                                        instructor: obj[j].instructor,
+                                        campus: obj[j].campus,
+                                        enroll: obj[j].enrollment,
+                                        max_enroll: obj[j].max_enroll,
+                                        instr_method: obj[j].instr_method,
+                                        building: obj[j].building
                                     });
                                 } else if (daysArray[k] == 'F' && test_date.is().friday()) {
                                     events.push({
                                         title: obj[j].short_name,
                                         start: startDate,
                                         end: endDate,
-                                        color: obj[j].color
+                                        color: obj[j].color,
+                                        instructor: obj[j].instructor,
+                                        campus: obj[j].campus,
+                                        enroll: obj[j].enrollment,
+                                        max_enroll: obj[j].max_enroll,
+                                        instr_method: obj[j].instr_method,
+                                        building: obj[j].building
                                     });
                                 }
                             }

@@ -68,6 +68,9 @@ class DrexelClass extends Model {
             'enroll',
             'max_enroll',
             'building',
+            'instructor',
+            'building',
+            'instr_method',
             DB::raw('subject_code || " " || course_no || " " || instr_type' . ' as short_name')
         );
     }

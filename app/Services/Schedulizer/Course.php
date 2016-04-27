@@ -17,8 +17,23 @@ class Course {
     public $enrollment;
     public $short_name;
     public $color;
+    public $instructor;
+    public $max_enroll;
+    public $building;
+    public $instr_method;
 
-    public function __construct($name, $days, $times, $crn, $campus, $full, $shortName) {
+    public function __construct($name,
+                                $days,
+                                $times,
+                                $crn,
+                                $campus,
+                                $full,
+                                $shortName,
+                                $instructor,
+                                $max_enroll,
+                                $building,
+                                $instr_method
+    ) {
         $this->name = $name;
         $this->days = $days;
         $this->times = $times;
@@ -26,6 +41,10 @@ class Course {
         $this->campus = $campus;
         $this->enrollment = $full;
         $this->short_name = $shortName;
+        $this->instructor = $instructor;
+        $this->max_enroll = $max_enroll;
+        $this->building = $building;
+        $this->instr_method = $instr_method;
     }
 
     public function setColor($color) {
