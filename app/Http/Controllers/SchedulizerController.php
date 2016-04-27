@@ -86,14 +86,14 @@ class SchedulizerController extends Controller {
             return Response::json(array(
                 'success' => true,
                 'code' => 1,
-                'message' => 'Copy this link',
+                'message' => 'Saved! Copy this link',
                 'url' => URL::to('/schedule') . '/' . $encodedID
             ));
         } else {
             return Response::json(array(
                 'success' => false,
                 'code' => 0,
-                'message' => 'Generate a schedule first!',
+                'message' => 'I can\'t save an empty schedule!',
                 'url' => URL::to('/schedule') . '/'
             ));
         }
