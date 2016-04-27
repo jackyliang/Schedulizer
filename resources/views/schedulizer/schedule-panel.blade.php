@@ -8,7 +8,7 @@
         </div>
         {{--<a class="btn btn-xs btn-raised pull-right" href="/schedulesave">--}}
             {{--<i class="fa fa-facebook-official" aria-hidden="true"></i> Share to Facebook</a>--}}
-        <a id="save-schedule" class="btn btn-xs btn-raised pull-right" href="/saveschedule">
+        <a id="save-schedule" class="btn btn-xs btn-raised pull-right">
             <i class="fa fa-link" aria-hidden="true"></i> Save link </a>
         {{--<a class="btn btn-xs btn-raised pull-right" href="#">--}}
             {{--<i class="fa fa-file-image-o"></i> Save as Image</a>--}}

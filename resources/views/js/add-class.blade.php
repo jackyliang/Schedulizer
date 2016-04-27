@@ -71,7 +71,21 @@
         getCartQuantity();
 
         $('#save-schedule').click(function(){
-            notification('Link copied to clickboard!', 'success');
+            $.ajax({
+                type: 'post',
+                url: '{{ URL('saveschedule') }}',
+                data: {
+                    _token: "{{ csrf_token() }}"
+                }
+            }).done(function(data){
+                new PNotify({
+                    title: 'Copy this link',
+                    icon: 'fa fa-link',
+                    text: '<code style="color: grey; background-color: white;">' + data.url + '</code>',
+                    type: 'success',
+                    hide: false
+                });
+            });
         });
 
         /**

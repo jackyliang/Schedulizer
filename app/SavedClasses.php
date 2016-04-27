@@ -25,4 +25,14 @@ class SavedClasses extends Model
      */
     protected $fillable = array('session');
 
+    /**
+     * Get hash of id accessor
+     *
+     * @return string
+     */
+    public function getHashAttribute()
+    {
+        return \Hashids::encode($this->attributes['id']);
+    }
+
 }

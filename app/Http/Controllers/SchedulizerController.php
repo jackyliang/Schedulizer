@@ -8,6 +8,7 @@ use App\Services\Schedulizer\Generate;
 use App\Services\Schedulizer\Course;
 use Hashids;
 use DB;
+use URL;
 use Input;
 use Response;
 use Session;
@@ -56,18 +57,37 @@ class SchedulizerController extends Controller {
         return $timeIncrements;
     }
 
+    /**
+     * Save the schedule using what's in the session
+     * @return mixed
+     */
     public function saveSchedule() {
+
+        // TODO: Validation
+
+        // Get 'class' objects from session and serialize it
         $serializedClass = serialize(Session::get('class'));
 
+        // Create a new SavedClasses object (this is the database table for
+        // saved_classes
         $savedClass = new SavedClasses;
 
+        // Get the serialized string and store it to the 'session' column
         $savedClass->session = $serializedClass;
 
+        // Persist the change
         $savedClass->save();
 
-        $encodedID = Hashids::encode($savedClass->id);
+        // Get the hash (Hash ID encoded PK)
+        $encodedID = $savedClass->hash;
 
-        return redirect('/schedule/' . $encodedID);
+        // Return the JSON
+        return Response::json(array(
+                'success' => true,
+                'code' => 1,
+                'url' => URL::to('/schedule') . '/' . $encodedID
+            )
+        );
     }
 
     public function schedule($key = null) {
@@ -137,7 +157,6 @@ class SchedulizerController extends Controller {
 
     /**
      * Shows all the classes with their detailed information
-     * TODO: Remove this test API
      * @return mixed
      */
     public function classes() {
@@ -575,25 +594,6 @@ class SchedulizerController extends Controller {
 
         if (!$full) $string = array_slice($string, 0, 1);
         return $string ? implode(', ', $string) . ' ago' : 'just now';
-    }
-
-    /**
-     * Takes in a session object and serializes + base64 encode it
-     * @param $sessionObject
-     * @return string
-     */
-    private function serializeSession($sessionObject) {
-        return base64_encode(serialize($sessionObject));
-    }
-
-    /**
-     * Takes in a serialized base64 encoded string and returns
-     * the base64 decoded version
-     * @param $serializedObject
-     * @return string
-     */
-    private function deserializeSession($serializedObject) {
-        return base64_decode($serializedObject);
     }
 
     /**

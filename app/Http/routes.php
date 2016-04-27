@@ -36,7 +36,7 @@ Route::post('add', 'SchedulizerController@add');
 /**
  * Save schedule to database
  */
-Route::get('saveschedule', 'SchedulizerController@saveSchedule');
+Route::post('saveschedule', 'SchedulizerController@saveSchedule');
 
 /**
  * Remove class from session
