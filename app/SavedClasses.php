@@ -12,4 +12,17 @@ class SavedClasses extends Model
      * @var string
      */
     protected $table = 'saved_classes';
+
+    /**
+     * PK used by the model
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * Fillable columns
+     * @var array
+     */
+    protected $fillable = array('session');
+
 }

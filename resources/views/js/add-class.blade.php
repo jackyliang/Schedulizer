@@ -70,6 +70,10 @@
         // jewel
         getCartQuantity();
 
+        $('#save-schedule').click(function(){
+            notification('Link copied to clickboard!', 'success');
+        });
+
         /**
          * Performs the add/remove action, the resulting notification prompts and
          * button visual characteristics

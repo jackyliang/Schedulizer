@@ -56,6 +56,20 @@ class SchedulizerController extends Controller {
         return $timeIncrements;
     }
 
+    public function saveSchedule() {
+        $serializedClass = serialize(Session::get('class'));
+
+        $savedClass = new SavedClasses;
+
+        $savedClass->session = $serializedClass;
+
+        $savedClass->save();
+
+        $encodedID = Hashids::encode($savedClass->id);
+
+        return redirect('/schedule/' . $encodedID);
+    }
+
     public function schedule($key = null) {
 
         // Decode the parameter in the URL (hashed PK)
