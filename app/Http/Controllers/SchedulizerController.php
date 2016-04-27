@@ -63,31 +63,41 @@ class SchedulizerController extends Controller {
      */
     public function saveSchedule() {
 
-        // TODO: Validation
+        // Check if there's a class session and make sure it's not empty
+        if(Session::has('class') && count(Session::get('class')) > 0) {
 
-        // Get 'class' objects from session and serialize it
-        $serializedClass = serialize(Session::get('class'));
+            // Get 'class' objects from session and serialize it
+            $serializedClass = serialize(Session::get('class'));
 
-        // Create a new SavedClasses object (this is the database table for
-        // saved_classes
-        $savedClass = new SavedClasses;
+            // Create a new SavedClasses object (this is the database table for
+            // saved_classes
+            $savedClass = new SavedClasses;
 
-        // Get the serialized string and store it to the 'session' column
-        $savedClass->session = $serializedClass;
+            // Get the serialized string and store it to the 'session' column
+            $savedClass->session = $serializedClass;
 
-        // Persist the change
-        $savedClass->save();
+            // Persist the change
+            $savedClass->save();
 
-        // Get the hash (Hash ID encoded PK)
-        $encodedID = $savedClass->hash;
+            // Get the hash (Hash ID encoded PK)
+            $encodedID = $savedClass->hash;
 
-        // Return the JSON
-        return Response::json(array(
+            // Return the JSON
+            return Response::json(array(
                 'success' => true,
                 'code' => 1,
+                'message' => 'Copy this link',
                 'url' => URL::to('/schedule') . '/' . $encodedID
-            )
-        );
+            ));
+        } else {
+            return Response::json(array(
+                'success' => false,
+                'code' => 0,
+                'message' => 'Generate a schedule first!',
+                'url' => URL::to('/schedule') . '/'
+            ));
+        }
+
     }
 
     public function schedule($key = null) {

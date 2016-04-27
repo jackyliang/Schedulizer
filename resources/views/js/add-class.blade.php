@@ -70,6 +70,12 @@
         // jewel
         getCartQuantity();
 
+        /**
+         *
+         * Calls the /saveschedule/ API and saves classes to session and
+         * returns the saved link
+         *
+         **/
         $('#save-schedule').click(function(){
             $.ajax({
                 type: 'post',
@@ -78,13 +84,17 @@
                     _token: "{{ csrf_token() }}"
                 }
             }).done(function(data){
-                new PNotify({
-                    title: 'Copy this link',
-                    icon: 'fa fa-link',
-                    text: '<code style="color: grey; background-color: white;">' + data.url + '</code>',
-                    type: 'success',
-                    hide: false
-                });
+                if(data.code == 1) {
+                    new PNotify({
+                        title: data.message,
+                        icon: 'fa fa-link',
+                        text: '<code style="color: grey; background-color: white;">' + data.url + '</code>',
+                        type: 'success',
+                        hide: false
+                    });
+                } else {
+                    notification(data.message, 'error');
+                }
             });
         });
 
