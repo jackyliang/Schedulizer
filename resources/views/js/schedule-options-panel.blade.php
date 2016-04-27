@@ -274,10 +274,10 @@
                         delay: { "show": 300, "hide": 100 },
                         html:true,
                         title: '<div align="left"><dt>' + event.instructor +
-                        '</dt><dd><b>Size:</b> ' + event.enroll + ' / ' + event.max_enroll +
-                        '</dd><dd><b>Type:</b> ' + event.instr_method + '</dd>' +
                         '</dd><dd><b>CRN:</b> ' + event.crn + '</dd>' +
-                        '</dd><dd><b>Building:</b> ' + event.building + '</dd></div>'
+                        '</dd><dd><b>Building:</b> ' + event.building + '</dd>' +
+                        '</dd><dd><b>Type:</b> ' + event.instr_method + '</dd>' +
+                        '</dt><dd><b>Size:</b> ' + event.enroll + ' / ' + event.max_enroll + '</div>'
                     });
                 }});
 
