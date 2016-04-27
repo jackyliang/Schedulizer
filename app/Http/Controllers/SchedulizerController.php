@@ -2,10 +2,13 @@
 
 use App\Http\Requests;
 use App\DrexelClass;
+use App\SavedClasses;
 use App\DrexelClassURL;
 use App\Services\Schedulizer\Generate;
 use App\Services\Schedulizer\Course;
+use Hashids;
 use DB;
+use URL;
 use Input;
 use Response;
 use Session;
@@ -54,7 +57,74 @@ class SchedulizerController extends Controller {
         return $timeIncrements;
     }
 
-    public function schedule(Request $request) {
+    /**
+     * Save the schedule using what's in the session
+     * @return mixed
+     */
+    public function saveSchedule() {
+
+        // Check if there's a class session and make sure it's not empty
+        if(Session::has('class') && count(Session::get('class')) > 0) {
+
+            // Get 'class' objects from session and serialize it
+            $serializedClass = serialize(Session::get('class'));
+
+            // Create a new SavedClasses object (this is the database table for
+            // saved_classes
+            $savedClass = new SavedClasses;
+
+            // Get the serialized string and store it to the 'session' column
+            $savedClass->session = $serializedClass;
+
+            // Persist the change
+            $savedClass->save();
+
+            // Get the hash (Hash ID encoded PK)
+            $encodedID = $savedClass->hash;
+
+            // Return the JSON
+            return Response::json(array(
+                'success' => true,
+                'code' => 1,
+                'message' => 'Saved! Copy this link',
+                'url' => URL::to('/schedule') . '/' . $encodedID
+            ));
+        } else {
+            return Response::json(array(
+                'success' => false,
+                'code' => 0,
+                'message' => 'I can\'t save an empty schedule!',
+                'url' => URL::to('/schedule') . '/'
+            ));
+        }
+
+    }
+
+    public function schedule($key = null) {
+
+        // Decode the parameter in the URL (hashed PK)
+        $decodedKey = Hashids::decode($key);
+
+        // If the URL has an 's' parameter key and the decoded key is valid,
+        // then it is a saved schedule and we can use it to retrieve the
+        // corresponded encoded primary key from the database.
+        if($key != null && $decodedKey != null){
+            // Get the 's' input key and decode the Hash ID (this is an encoded
+            // primary key to hide the primary key values) and grab its first
+            // element
+            $primaryKey = $decodedKey[0];
+
+            // Find the corresponding primary key
+            $sessionObjectFromDB = SavedClasses::find($primaryKey);
+
+            // If there are results, then unserialize the serialized class data
+            // and load it back into the session
+            if($sessionObjectFromDB != null) {
+                $deserializedObject = unserialize($sessionObjectFromDB->session);
+                Session::put('class', $deserializedObject);
+            }
+        }
+
         // Generate the time span increments of 30 minutes
         $timeIncrements = $this->time_span();
 
@@ -97,7 +167,6 @@ class SchedulizerController extends Controller {
 
     /**
      * Shows all the classes with their detailed information
-     * TODO: Remove this test API
      * @return mixed
      */
     public function classes() {
@@ -347,6 +416,7 @@ class SchedulizerController extends Controller {
             );
         }
 
+
         // Nothing in the cart
         return Response::json(array(
             'success' => true,
@@ -555,6 +625,7 @@ class SchedulizerController extends Controller {
 
         // Set default last updated string
         $lastUpdated = "0 minutes ago";
+
 
         // If the classes array returns results,
         // then set the natural time string

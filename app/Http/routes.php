@@ -26,12 +26,17 @@ Route::get('search', 'SchedulizerController@search');
 /**
  * Schedulizer generated schedules
  */
-Route::get('schedule', 'SchedulizerController@schedule');
+Route::get('schedule/{key?}', 'SchedulizerController@schedule');
 
 /**
  * Add class to session
  */
 Route::post('add', 'SchedulizerController@add');
+
+/**
+ * Save schedule to database
+ */
+Route::post('saveschedule', 'SchedulizerController@saveSchedule');
 
 /**
  * Remove class from session

@@ -71,6 +71,34 @@
         getCartQuantity();
 
         /**
+         *
+         * Calls the /saveschedule/ API and saves classes to session and
+         * returns the saved link
+         *
+         **/
+        $('#save-schedule').click(function(){
+            $.ajax({
+                type: 'post',
+                url: '{{ URL('saveschedule') }}',
+                data: {
+                    _token: "{{ csrf_token() }}"
+                }
+            }).done(function(data){
+                if(data.code == 1) {
+                    new PNotify({
+                        title: data.message,
+                        icon: 'fa fa-link',
+                        text: '<code style="color: grey; background-color: white;">' + data.url + '</code>',
+                        type: 'success',
+                        hide: false
+                    });
+                } else {
+                    notification(data.message, 'error');
+                }
+            });
+        });
+
+        /**
          * Performs the add/remove action, the resulting notification prompts and
          * button visual characteristics
          *
