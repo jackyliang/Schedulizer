@@ -26,7 +26,7 @@ Route::get('search', 'SchedulizerController@search');
 /**
  * Schedulizer generated schedules
  */
-Route::get('schedule', 'SchedulizerController@schedule');
+Route::get('schedule/{key?}', 'SchedulizerController@schedule');
 
 /**
  * Add class to session
