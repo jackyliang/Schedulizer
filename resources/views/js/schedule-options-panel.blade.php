@@ -276,6 +276,7 @@
                         title: '<div align="left"><dt>' + event.instructor +
                         '</dt><dd><b>Size:</b> ' + event.enroll + ' / ' + event.max_enroll +
                         '</dd><dd><b>Type:</b> ' + event.instr_method + '</dd>' +
+                        '</dd><dd><b>CRN:</b> ' + event.crn + '</dd>' +
                         '</dd><dd><b>Building:</b> ' + event.building + '</dd></div>'
                     });
                 }});
@@ -347,8 +348,6 @@
                                     var lastWeek = moment().subtract(6, 'days').format("YYYY-MM-DD hh:mm a");
                                     var nextWeek = moment().add(6, 'days').format("YYYY-MM-DD hh:mm a");
 
-                                    console.log(obj[j]);
-
                                     events.push({
                                         title: obj[j].short_name,
                                         allDay: true,
@@ -359,7 +358,8 @@
                                         campus: obj[j].campus,
                                         enroll: obj[j].enrollment,
                                         max_enroll: obj[j].max_enroll,
-                                        instr_type: obj[j].instr_type,
+                                        instr_method: obj[j].instr_method,
+                                        crn: obj[j].crn,
                                         building: obj[j].building
                                     });
                                 }
@@ -377,70 +377,15 @@
                                 var endDate = GetDateString(loop) + ' ' + times[1].trim();
 
                                 if (daysArray[k] == 'M' && test_date.is().monday()) {
-                                    events.push({
-                                        title: obj[j].short_name,
-                                        start: startDate,
-                                        end: endDate,
-                                        color: obj[j].color,
-                                        instructor: obj[j].instructor,
-                                        campus: obj[j].campus,
-                                        enroll: obj[j].enrollment,
-                                        max_enroll: obj[j].max_enroll,
-                                        instr_method: obj[j].instr_method,
-                                        building: obj[j].building
-                                    });
+                                    singleEvent(events, obj[j], startDate, endDate);
                                 } else if (daysArray[k] == 'T' && test_date.is().tuesday()) {
-                                    events.push({
-                                        title: obj[j].short_name,
-                                        start: startDate,
-                                        end: endDate,
-                                        color: obj[j].color,
-                                        instructor: obj[j].instructor,
-                                        campus: obj[j].campus,
-                                        enroll: obj[j].enrollment,
-                                        max_enroll: obj[j].max_enroll,
-                                        instr_method: obj[j].instr_method,
-                                        building: obj[j].building
-                                    });
+                                    singleEvent(events, obj[j], startDate, endDate);
                                 } else if (daysArray[k] == 'W' && test_date.is().wednesday()) {
-                                    events.push({
-                                        title: obj[j].short_name,
-                                        start: startDate,
-                                        end: endDate,
-                                        color: obj[j].color,
-                                        instructor: obj[j].instructor,
-                                        campus: obj[j].campus,
-                                        enroll: obj[j].enrollment,
-                                        max_enroll: obj[j].max_enroll,
-                                        instr_method: obj[j].instr_method,
-                                        building: obj[j].building
-                                    });
+                                    singleEvent(events, obj[j], startDate, endDate);
                                 } else if (daysArray[k] == 'R' && test_date.is().thursday()) {
-                                    events.push({
-                                        title: obj[j].short_name,
-                                        start: startDate,
-                                        end: endDate,
-                                        color: obj[j].color,
-                                        instructor: obj[j].instructor,
-                                        campus: obj[j].campus,
-                                        enroll: obj[j].enrollment,
-                                        max_enroll: obj[j].max_enroll,
-                                        instr_method: obj[j].instr_method,
-                                        building: obj[j].building
-                                    });
+                                    singleEvent(events, obj[j], startDate, endDate);
                                 } else if (daysArray[k] == 'F' && test_date.is().friday()) {
-                                    events.push({
-                                        title: obj[j].short_name,
-                                        start: startDate,
-                                        end: endDate,
-                                        color: obj[j].color,
-                                        instructor: obj[j].instructor,
-                                        campus: obj[j].campus,
-                                        enroll: obj[j].enrollment,
-                                        max_enroll: obj[j].max_enroll,
-                                        instr_method: obj[j].instr_method,
-                                        building: obj[j].building
-                                    });
+                                    singleEvent(events, obj[j], startDate, endDate);
                                 }
                             }
                         }
@@ -456,6 +401,25 @@
                     callback(events);
                 }
             );
+        }
+
+        /**
+         * This represents a single weekday non-all-day event.
+         **/
+        function singleEvent(events, classObject, startDate, endDate) {
+            return events.push({
+                title: classObject.short_name,
+                start: startDate,
+                end: endDate,
+                color: classObject.color,
+                instructor: classObject.instructor,
+                campus: classObject.campus,
+                enroll: classObject.enrollment,
+                max_enroll: classObject.max_enroll,
+                instr_method: classObject.instr_method,
+                building: classObject.building,
+                crn: classObject.crn
+            });
         }
 
         /**
