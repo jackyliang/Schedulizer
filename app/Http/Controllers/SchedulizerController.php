@@ -2,9 +2,11 @@
 
 use App\Http\Requests;
 use App\DrexelClass;
+use App\SavedClasses;
 use App\DrexelClassURL;
 use App\Services\Schedulizer\Generate;
 use App\Services\Schedulizer\Course;
+use Hashids;
 use DB;
 use Input;
 use Response;
@@ -54,7 +56,31 @@ class SchedulizerController extends Controller {
         return $timeIncrements;
     }
 
-    public function schedule(Request $request) {
+    public function schedule($key = null) {
+
+        // Decode the parameter in the URL (hashed PK)
+        $decodedKey = Hashids::decode($key);
+
+        // If the URL has an 's' parameter key and the decoded key is valid,
+        // then it is a saved schedule and we can use it to retrieve the
+        // corresponded encoded primary key from the database.
+        if($key != null && $decodedKey != null){
+            // Get the 's' input key and decode the Hash ID (this is an encoded
+            // primary key to hide the primary key values) and grab its first
+            // element
+            $primaryKey = $decodedKey[0];
+
+            // Find the corresponding primary key
+            $sessionObjectFromDB = SavedClasses::find($primaryKey);
+
+            // If there are results, then unserialize the serialized class data
+            // and load it back into the session
+            if($sessionObjectFromDB != null) {
+                $deserializedObject = unserialize($sessionObjectFromDB->session);
+                Session::put('class', $deserializedObject);
+            }
+        }
+
         // Generate the time span increments of 30 minutes
         $timeIncrements = $this->time_span();
 
@@ -347,6 +373,7 @@ class SchedulizerController extends Controller {
             );
         }
 
+
         // Nothing in the cart
         return Response::json(array(
             'success' => true,
@@ -537,6 +564,25 @@ class SchedulizerController extends Controller {
     }
 
     /**
+     * Takes in a session object and serializes + base64 encode it
+     * @param $sessionObject
+     * @return string
+     */
+    private function serializeSession($sessionObject) {
+        return base64_encode(serialize($sessionObject));
+    }
+
+    /**
+     * Takes in a serialized base64 encoded string and returns
+     * the base64 decoded version
+     * @param $serializedObject
+     * @return string
+     */
+    private function deserializeSession($serializedObject) {
+        return base64_decode($serializedObject);
+    }
+
+    /**
      * Display class search results
      * @return mixed
      */
@@ -555,6 +601,7 @@ class SchedulizerController extends Controller {
 
         // Set default last updated string
         $lastUpdated = "0 minutes ago";
+
 
         // If the classes array returns results,
         // then set the natural time string
