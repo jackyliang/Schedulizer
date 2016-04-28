@@ -144,7 +144,7 @@
                 result.classes[index][i]['short_name'] +
                 ' (' + result.classes[index][i]['crn'] + ')' +
                 '<a data-action="remove" data-class-name="' +
-                result.classes[index][i]['name'] + '"class="btn btn-default remove-item btn-xs btn-font-12-px btn-raised margin-add-to-cart mdi-content-clear"></a>' +
+                result.classes[index][i]['name'] + '"class="btn btn-default remove-item btn-xs btn-font-12-px btn-raised margin-add-to-cart mdi-content-clear pull-right"></a>' +
                 '</li>'
                 ;
             }
@@ -312,6 +312,20 @@
                 }
                 return false;
             }
+
+            /**
+             * Clear the schedule
+             **/
+            $('#clear-schedule').click(function(){
+                $.ajax({
+                    type: 'get',
+                    url: '{{ URL('cart/clear') }}'
+                }).done(function(data){
+                    notification(data.message, 'success');
+                    updateResults();
+                    renderCalendar(index);
+                });
+            });
 
             // Add events from JSON data
             $('#calendar').fullCalendar('addEventSource',
