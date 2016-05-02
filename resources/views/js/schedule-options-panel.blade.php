@@ -206,6 +206,31 @@
             }
         });
 
+        function generateOverlapClassRemove(result) {
+            var text = '';
+            text += '<div class=\"text-muted\">We are giving you the option to remove it</div>';
+            text += '<ul class="list-group class-cart">';
+
+            // Build the unordered list of classes with their name and CRN
+            // HACK Aug 21 2015: Yes. I used in-line style. But I am not sure
+            //                   how to assign from JSON a `color` variable
+            //                   dynamically to the unicode circle item.
+            //                   This section of code is NASTY. I am sorry.
+            for (i = 0; i < result.length; i++) {
+                text += '<li class="list-group-item">' +
+                '<span class="glyphicon glyphicon-dot" style="opacity: 0.65; color:' +
+                result[i]['color'] +'"></span> ' +
+                result[i]['short_name'] +
+                ' (' + result[i]['crn'] + ')' +
+                '<a data-action="remove" data-class-name="' +
+                result[i]['name'] + '"class="btn btn-default remove-item btn-xs btn-font-12-px btn-raised margin-add-to-cart mdi-content-clear pull-right"></a>' +
+                '</li>'
+                ;
+            }
+            text += '</ul>';
+            return text;
+        }
+
         /**
          * Show number of results in header as well as append the list of
          * classes to the cart panel. Uses the dynamically updated URL
@@ -220,6 +245,14 @@
                 window.location.hash = '#' + (index + 1);
                 // Save the response data to hash
                 result = data;
+
+                if(parseInt(result.num_overlap) > 0) {
+                    $('#overlap-modal').appendTo("body").modal('show');
+                    $('#overlap-title').html("<h4 id=\"overlap-title\" class=\"modal-title\"><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> " + result.num_overlap_msg + "</h4>");
+                    $('#overlap-body')
+                            .html(generateOverlapClassRemove(result.overlap_classes))
+                }
+
                 text = formatList(result);
                 $("#classes").html(text);
                 updateIndexOfSchedule();
