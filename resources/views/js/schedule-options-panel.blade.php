@@ -110,16 +110,9 @@
         }
 
         /**
-         * This generates the HTML list of classes, adds a colored circle before
-         * the name of each class, and adds a remove button
-         * @param result  The array from the class generation JSON API
-         * @returns {*}   The HTML for the list of classes used to generate
-         *                the schedules
-         */
-        function formatList(result) {
-            if(result.quantity === 0) {
-                return 'Oops! Looks like no schedules were generated. <a id="focus"><span class="glyphicon glyphicon-search"></span> Add</a> some classes or widen your filter options!';
-            }
+         * Generates the HTML markup for the "Classes" panel
+         **/
+        function generateRemoveClassTab(result) {
             var text = '';
             text += '<ul class="list-group class-cart">';
 
@@ -150,6 +143,21 @@
             }
             text += '</ul>';
             return text;
+        }
+
+        /**
+         * This generates the HTML list of classes, adds a colored circle before
+         * the name of each class, and adds a remove button
+         * @param result  The array from the class generation JSON API
+         * @returns {*}   The HTML for the list of classes used to generate
+         *                the schedules
+         */
+        function formatList(result) {
+            if(result.quantity === 0) {
+                return 'Oops! Looks like no schedules were generated. <a id="focus"><span class="glyphicon glyphicon-search"></span> Add</a> some classes or widen your filter options!';
+            }
+
+            return generateRemoveClassTab(result);
         }
 
         /**
