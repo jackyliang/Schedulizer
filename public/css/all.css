@@ -266,6 +266,9 @@ h3.margin-class-name {
 .btn.save-schedule {
   margin: -3px -8px; }
 
+.modal-backdrop {
+  z-index: -1; }
+
 /*
 
 This is the Material Design theme for FullCalendar Weekly Agenda view

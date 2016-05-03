@@ -232,7 +232,10 @@ class SchedulizerController extends Controller {
                 'code' => -1,
                 'quantity' => 0,
                 'classes' => [],
-                'message' => 'Something went wrong! The code monkeys are on it. Try refreshing the page in the mean time.'
+                'message' => 'Something went wrong! The code monkeys are on it. Try refreshing the page in the mean time.',
+                'overlap_classes' => [],
+                'num_overlap' => 0,
+                'num_overlap_msg' => 'You have no overlapping classes.'
             ));
         }
 
@@ -285,7 +288,10 @@ class SchedulizerController extends Controller {
                     'code' => 0,
                     'quantity' => 0,
                     'classes' => [],
-                    'message' => 'There are no classes in your cart'
+                    'message' => 'There are no classes in your cart',
+                    'overlap_classes' => [],
+                    'num_overlap' => 0,
+                    'num_overlap_msg' => 'You have no overlapping classes.'
                 )
             );
         }
@@ -392,12 +398,21 @@ class SchedulizerController extends Controller {
             }
         }
 
+        // List of overlapped classes
+        $overlappedClasses = $generate->getOverlappedClasses();
+
+        // Number of overlapped classes
+        $numberOfOverlaps = $generate->getNumberOfClassesOverlapped();
+
         return Response::json(array(
                 'success' => true,
                 'code' => 1,
                 'quantity' => $numOfSchedules,
                 'classes' => $listOfSchedules,
-                'message' => $message
+                'message' => $message,
+                'overlap_classes' => $overlappedClasses,
+                'num_overlap' => $numberOfOverlaps,
+                'num_overlap_msg' => 'Woops! You have ' . $numberOfOverlaps . ' conflicting classes.'
             )
         );
     }

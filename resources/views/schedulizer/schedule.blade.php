@@ -17,3 +17,19 @@
 
     @include('js.schedule-options-panel')
 @stop
+
+<div class="modal fade in" id="overlap-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="overlap-title" class="modal-title"></h4>
+            </div>
+            <div id="overlap-body" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-flat btn-success" data-dismiss="modal">Done</button>
+            </div>
+        </div>
+    </div>
+</div>

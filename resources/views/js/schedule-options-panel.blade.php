@@ -110,16 +110,9 @@
         }
 
         /**
-         * This generates the HTML list of classes, adds a colored circle before
-         * the name of each class, and adds a remove button
-         * @param result  The array from the class generation JSON API
-         * @returns {*}   The HTML for the list of classes used to generate
-         *                the schedules
-         */
-        function formatList(result) {
-            if(result.quantity === 0) {
-                return 'Oops! Looks like no schedules were generated. <a id="focus"><span class="glyphicon glyphicon-search"></span> Add</a> some classes or widen your filter options!';
-            }
+         * Generates the HTML markup for the "Classes" panel
+         **/
+        function generateRemoveClassTab(result) {
             var text = '';
             text += '<ul class="list-group class-cart">';
 
@@ -150,6 +143,21 @@
             }
             text += '</ul>';
             return text;
+        }
+
+        /**
+         * This generates the HTML list of classes, adds a colored circle before
+         * the name of each class, and adds a remove button
+         * @param result  The array from the class generation JSON API
+         * @returns {*}   The HTML for the list of classes used to generate
+         *                the schedules
+         */
+        function formatList(result) {
+            if(result.quantity === 0) {
+                return 'Oops! Looks like no schedules were generated. <a id="focus"><span class="glyphicon glyphicon-search"></span> Add</a> some classes or widen your filter options!';
+            }
+
+            return generateRemoveClassTab(result);
         }
 
         /**
@@ -198,6 +206,31 @@
             }
         });
 
+        function generateOverlapClassRemove(result) {
+            var text = '';
+            text += '<div class=\"moreMuted\">But don\'t worry! We are giving you the option to remove them.</div>';
+            text += '<div class=\"moreMuted\">Feel free to close this window. You can still remove classes on the \"Classes\" tab.</div>';
+            text += '<ul class="list-group class-cart">';
+
+            // Build the unordered list of classes with their name and CRN
+            // HACK Aug 21 2015: Yes. I used in-line style. But I am not sure
+            //                   how to assign from JSON a `color` variable
+            //                   dynamically to the unicode circle item.
+            //                   This section of code is NASTY. I am sorry.
+            for (i = 0; i < result.length; i++) {
+                text += '<li class="list-group-item">' +
+                '<span class="glyphicon glyphicon-dot" style="opacity: 0.65; color:' +
+                result[i]['color'] +'"></span> ' +
+                result[i]['short_name'] +
+                '<a data-action="remove" data-class-name="' +
+                result[i]['name'] + '"class="btn btn-default remove-item btn-xs btn-font-12-px btn-raised margin-add-to-cart mdi-content-clear pull-right"></a>' +
+                '</li>'
+                ;
+            }
+            text += '</ul>';
+            return text;
+        }
+
         /**
          * Show number of results in header as well as append the list of
          * classes to the cart panel. Uses the dynamically updated URL
@@ -210,8 +243,17 @@
             }).done(function(data){
                 // Get the hash
                 window.location.hash = '#' + (index + 1);
+
                 // Save the response data to hash
                 result = data;
+
+                if(parseInt(result.num_overlap) > 0) {
+                    $('#overlap-modal').appendTo("body").modal('show');
+                    $('#overlap-title').html("<h4 id=\"overlap-title\" class=\"modal-title\"><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> " + result.num_overlap_msg + "</h4>");
+                    $('#overlap-body')
+                            .html(generateOverlapClassRemove(result.overlap_classes));
+                }
+
                 text = formatList(result);
                 $("#classes").html(text);
                 updateIndexOfSchedule();

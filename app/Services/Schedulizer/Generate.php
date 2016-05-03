@@ -9,6 +9,9 @@ require_once('Course.php');
  * @package App\Services\Schedulizer
  */
 class Generate {
+
+    private $conflictClasses = [];
+
     public function __construct() {
 
     }
@@ -146,6 +149,14 @@ class Generate {
     }
 
     /**
+     * Return a list of the overlapped classes
+     * @return array
+     */
+    public function getOverlappedClasses() {
+        return $this->conflictClasses;
+    }
+
+    /**
      * Compares days to see if there are any overlapping days
      * @param $str1
      * @param $str2
@@ -168,7 +179,9 @@ class Generate {
     }
 
     /**
-     * Checks if the times in military time overlaps
+     * Checks if the times in military time overlaps.
+     * If they overlap, then return true, otherwise
+     * it does not overlap, and return false.
      * @param $start1
      * @param $end1
      * @param $start2
@@ -176,38 +189,62 @@ class Generate {
      * @return bool
      */
     public function timeOverlap($start1, $end1, $start2, $end2) {
-        if ($start1 == $start2 || $end1 == $end2)
+        // Start or end times overlap
+        if ($start1 == $start2 || $end1 == $end2) {
             return true;
+        }
         elseif (($start1 < $start2 && $start2 < $end1) || ($start1 < $end2
-                && $end2 < $end1)
-        )
+                && $end2 < $end1)) {
             return true;
+        }
         elseif (($start2 < $start1 && $start1 < $end2) || ($start2 < $end1
-                && $end1 < $end2)
-        )
+                && $end1 < $end2)) {
             return true;
+        }
         elseif (($start1 < $start2 && $end2 < $end1) || ($start2 < $start1
-                && $end1 < $end2)
-        )
+                && $end1 < $end2)) {
             return true;
-        else
+        }
+        else {
             return false;
+        }
     }
 
     /**
      * Checks if an array of classes, and the new class that is about to be
-     * added in overlap at all
+     * added in overlap at all. If there is an overlap, then return false,
+     * and push the two conflicting classes to a conflictedClass array. If
+     * there are no conflicts, then return false as well.
      * @param $courses
      * @param $course_temp
      * @return bool
      */
     public function overlap($courses, $course_temp) {
         for ($i = 0; $i < count($courses); $i = $i + 1) {
-            if ($this->overlapCourses($courses[$i], $course_temp) == true) {
-                return true;
+            if ($this->overlapCourses($courses[$i], $course_temp)) {
+                // Push the class that is conflicted to the conflictedClass
+                // array
+                if(!in_array($courses[$i], $this->conflictClasses)) {
+                    array_push($this->conflictClasses, $courses[$i]);
+                }
+
+                // Push the class that is conflicted with to the
+                // conflictedClass array
+                if(!in_array($course_temp, $this->conflictClasses)) {
+                    array_push($this->conflictClasses, $course_temp);
+                }
+                return false;
             }
         }
         return false;
+    }
+
+    /**
+     * Returns the number of overlapped classes
+     * @return int
+     */
+    public function getNumberOfClassesOverlapped() {
+        return sizeof($this->conflictClasses);
     }
 
     /**
