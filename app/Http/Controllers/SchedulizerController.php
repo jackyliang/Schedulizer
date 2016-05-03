@@ -412,7 +412,7 @@ class SchedulizerController extends Controller {
                 'message' => $message,
                 'overlap_classes' => $overlappedClasses,
                 'num_overlap' => $numberOfOverlaps,
-                'num_overlap_msg' => 'Woops! You have ' . $numberOfOverlaps . ' overlapping classes'
+                'num_overlap_msg' => 'Woops! You have ' . $numberOfOverlaps . ' conflicting classes.'
             )
         );
     }

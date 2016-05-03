@@ -22,14 +22,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 id="overlap-title" class="modal-title"></h4>
             </div>
             <div id="overlap-body" class="modal-body">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Got it</button>
+                <button type="button" class="btn btn-flat btn-success" data-dismiss="modal">Done</button>
             </div>
         </div>
     </div>
