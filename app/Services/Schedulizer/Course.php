@@ -47,6 +47,10 @@ class Course {
         $this->instr_method = $instr_method;
     }
 
+    public function getShortName(){
+        return $this->short_name;
+    }
+
     public function setColor($color) {
         $this->color = $color;
     }

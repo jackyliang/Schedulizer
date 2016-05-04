@@ -146,7 +146,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -199,7 +198,6 @@ return [
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Form'      => 'Illuminate\Html\FormFacade',
         'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
