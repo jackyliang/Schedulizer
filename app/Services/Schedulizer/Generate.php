@@ -224,13 +224,15 @@ class Generate {
             if ($this->overlapCourses($courses[$i], $course_temp)) {
                 // Push the class that is conflicted to the conflictedClass
                 // array
-                if(!in_array($courses[$i], $this->conflictClasses)) {
+                // TODO: Figure out why it's being added to the list
+                if(!in_array($courses[$i]->getShortName(), $this->conflictClasses)) {
                     array_push($this->conflictClasses, $courses[$i]);
                 }
 
                 // Push the class that is conflicted with to the
                 // conflictedClass array
-                if(!in_array($course_temp, $this->conflictClasses)) {
+                // TODO: Figure out why it's being added to the list
+                if(!in_array($course_temp->getShortName(), $this->conflictClasses)) {
                     array_push($this->conflictClasses, $course_temp);
                 }
                 return false;

@@ -297,6 +297,7 @@
             var myDataset = result;
 
             $('#calendar').fullCalendar({
+                slotEventOverlap: false,
                 editable: false,
                 handleWindowResize: true,
                 weekends: false, // Hide weekends
