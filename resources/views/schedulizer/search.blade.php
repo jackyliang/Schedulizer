@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="page-heading">
-        <h1>Search for Summer 2016 Classes</h1>
+        <h1>Search for Fall 2016 Classes</h1>
     </div>
 
     <form
