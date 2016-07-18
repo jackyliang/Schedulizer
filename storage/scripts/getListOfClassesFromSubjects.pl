@@ -15,7 +15,7 @@ use FindBin qw( $RealBin );
 $|++; #autoflush disk buffer
 
 # This script works directly with our SQLite DB  
-my $dbFile = "$RealBin/../database.sqlite";
+my $dbFile = "../../database/database.sqlite";
 my $dsn      = "dbi:SQLite:dbname=$dbFile";
 my $user     = "";
 my $password = "";
@@ -28,8 +28,8 @@ my $dbh = DBI->connect($dsn, $user, $password, {
 my $baseUrl = "https://duapp2.drexel.edu";
 my $sessionId = '2357A293F0608215F6D989A989D17BE1';
 my $body=''; #response body
-my $year = 2016;
-my $term = 'Winter';
+my $year = 2017;
+my $term = 'Fall';
 
 #It seems on the TMS search page, the terms 1-4 are always fall through summer of this academic year.
 #Next year is terms 5-8, but don't seem to work
