@@ -30,7 +30,7 @@ my $sessionId = '2357A293F0608215F6D989A989D17BE1';
 my $body=''; #response body
 my $data='formids=term%2CcourseName%2CcrseNumb%2Ccrn&component=searchForm&page=Home&service=direct&session=T&submitmode=submit&submitname=&crseNumb=&crn=&courseName=';
 my $year = 2016; #the script updates these below
-my $term = 'Summer';
+my $term = 'Fall';
 
 #It seems on the TMS search page, the terms 1-4 are always fall through summer of this academic year.
 #Next year is terms 5-8, but don't seem to work
