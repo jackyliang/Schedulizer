@@ -54,7 +54,7 @@ print "$tempCurlRequest\n";
 $body = `$tempCurlRequest`; #get response body from curl
 
 my @termUrls = ();
-while ($body =~ m/<a href="(\/webtms_du\/app\?component=quarterTermDetailsNext&amp;page=Home[^<>"]+?)">/g)
+while ($body =~ m/<a href="(\/webtms_du\/app\?component=quarterTermDetails&amp;page=Home[^<>"]+?)">/g)
 {#get all the urls for next year's terms from the main tms page
     push @termUrls, decode_entities($1);
 }

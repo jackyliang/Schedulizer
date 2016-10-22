@@ -1,45 +1,47 @@
-users table -
-id    name    email
-1     Jacky   bluelegopiece@hotmail.com
+### Installing DBI and SQLite for Perl
 
-user_classes -
-id    user_id   class_id
-1     1         1
-2     1         2
-3     1         3
+    aptitude install libdbi-perl
 
-classes -
-id    crn
-1     4000
-2     4001
-3     4003
+    apt-get install libdbd-sqlite3-perl
 
-user hasMany classes
+### How to update classes
 
-## Installing DBI and SQLite for Perl
-aptitude install libdbi-perl
-apt-get install libdbd-sqlite3-perl
+    DELETE FROM classes;
 
-DELETE FROM classes, class_urls, subject_urls
+    DELETE FROM class_urls;
 
-Note: make sure all 'year' and 'term' match up across all three
-tables. Meaning if it's currently Fall 2016, then make sure all 'term'
-and 'year' in the three scripts are 'fall' '2016'
+    DELETE FROM subject_urls;
 
-1. getDepartmentLists.pl 
+Next, run the following scripts [depending on whether it is current or
+next year]
+
+    ./getYearLinks.pl; ./getListOfClassesForThisYear.pl; ./getClassDetails.pl
+
+    ./getYearLinks.pl; ./getListOfClassesForNextYear.pl; ./getClassDetails.pl
+
+Note: Make sure all 'year' and 'term' match up across all three
+tables in both the database and scripts. Meaning if it's currently 
+Fall 2016, then make sure all 'term' and 'year' in the three scripts 
+are 'fall' '2016'
+
+1. getYearLinks.pl
+    - This gets all the links for this [or] next year 
     - run before any new term to get all links for the year.
-[2]. getListOfClasses.pl
+    - check the URL inside for `Next` or lack of thereof
+[2]. getListOfClassesForThisYear.pl
+    - This gets the class URLs for THIS year by searching the vowels
+      'aeiou' and then retrieving the detailed class URLs. 
     - use this to update the list of class subjects (i.e. ECE..
       CS..) for the CURRENT year. So don't use this if you are
       currently in Summer term, and you want to update the Fall
       term.  
-[2]. getListOfClassesFromSubjects.pl 
+[2]. getListOfClassesForNextYear.pl 
+    - This gets all the class URLs for next year using the subject
+      URLs scraped from getYearLinks.pl
     - use this to update the list of class subjects for the
       NEXT year. If you are currently in Summer term, and
       want to update Fall classes, use this.
-3. getClassDetails
+3. getClassDetails.pl
+    - This downloads all detailed class information using the
+      class_urls table's links
 
-When deploying:
-
-1. Roll back three times (until create_classes)
-2. Run scrape scripts

@@ -28,7 +28,7 @@ my $sessionId = '2357A293F0608215F6D989A989D17BE1';
 my $body=''; #response body
 my $count = 0;
 my $year = 2016;
-my $term = 'Fall';
+my $term = 'Winter';
 
 my $temp = `curl -s -D -  --data 'formids=term%2CcourseName%2CcrseNumb%2Ccrn&component=searchForm&page=Home&service=direct&submitmode=submit&submitname=&term=1&courseName=test&crseNumb=&crn=' -X POST https://duapp2.drexel.edu/webtms_du/app -o /dev/null`; #Note the lack of &session=T, that's important
 $temp =~ m/Set-Cookie: JSESSIONID=([A-F0-9]{32})/ or die "Can't find JSESSIONID";
