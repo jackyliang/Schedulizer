@@ -31,8 +31,8 @@ my $sessionId = '2357A293F0608215F6D989A989D17BE1';
 my $body=''; #response body
 my @termNames = ('', 'Fall', 'Winter', 'Spring', 'Summer');
 
-my $year = 2016;
-my $term = 'Fall';
+my $year = 2017;
+my $term = 'Spring';
 
 my $firstUrl = "https://duapp2.drexel.edu/webtms_du/app?page=Home&service=page";
 
