@@ -64,7 +64,7 @@ Currently Summer 2017. To update Fall 2017, use `getListOfClassesForNextYear.pl`
 1. `getYearLinks.pl`
     - This gets all the links for this [or] next year 
     - run before any new term to get all links for the year.
-    - check the URL inside for `Next` or lack of thereof
+    - Inside this script contains a Drexel TMS URL. If scraping next year's classes, append a `Next` to the URL. Otherwise, leave it. If confused, go to Drexel TMS and look at the URL for next year's data and take that URL
 2. `getListOfClassesForThisYear.pl`
     - This gets the class URLs for THIS year by searching the vowels
       'aeiou' and then retrieving the detailed class URLs. 
