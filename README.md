@@ -1,6 +1,6 @@
 # Schedulizer
 
-Official repository of the Drexel Schedulizer
+Official repository of the Drexel Schedulizer. Drexel Schedulizer uses the Laravel PHP framework and Homestead for its development environment. It is currently hosted on Digital Ocean in the $5/month droplet.
 
 # Installation Instructions
 
@@ -9,6 +9,14 @@ Official repository of the Drexel Schedulizer
     aptitude install libdbi-perl
 
     apt-get install libdbd-sqlite3-perl
+
+### Installing Laravel
+
+Use the following Laravel installation [instructions](https://laravel.com/docs/4.2)
+
+### Installing Homestead
+
+Use the following Homestead installation [instructions](https://laravel.com/docs/5.4/homestead)
 
 # Updating The Database To a New Semester
 
@@ -81,4 +89,32 @@ Currently Summer 2017. To update Fall 2017, use `getListOfClassesForNextYear.pl`
 4. `getClassDetails.pl`
     - This downloads all detailed class information using the
       `class_urls` table's links
+
+# Contributing
+
+Contributing to Schedulizer can be in many forms:
+
+- Donations (hosting isn't free!)
+- Filing AND fixing bugs (together). Please don't just file bugs and don't fix them.
+- Creating new features for the site. You can get some inspiration from open issues
+- Refactoring code to make it easier for the next developer
+- Making the UI look more beautiful
+
+After setting up your development environment, pulled data, and tested the feature ensuring minimal bugs, please create a new issue [here](https://github.com/jackyliang/Schedulizer/issues/new) and the team will perform a feature + code review before merging. There's only one person on the "team" so I am not sure why I used the word team here.
+
+## Built with Laravel PHP Framework
+
+[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+
+Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+
+## Official Documentation
+
+Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+
+### License
+
+The Laravel framework and Schedulizer is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
