@@ -51,29 +51,34 @@ next year]. These scripts are under `/storage/scripts/`. Read below for an expla
 
     ./getYearLinks.pl; ./getListOfClassesForNextYear.pl; ./getClassDetails.pl
 
-Note: Make sure all 'year' and 'term' match up across all three
-tables in both the database and scripts. Meaning if it's currently 
-Fall 2016, then make sure all 'term' and 'year' in the three scripts 
-are 'fall' '2016'
+Note: The use of "this" year defines the academic year. So "this" year starts at the Fall term and ends at the Summer term. The use of "next" year also starts at "Fall" and ends at "Summer". This is super important to know, since if you use the wrong script depending on which term you are on, you will get wrong or no data. 
 
-1. getYearLinks.pl
+Example:
+
+Currently Spring 2017. To update Summer 2017, use `getListOfClassesForThisYear.pl`
+
+Currently Summer 2017. To update Fall 2017, use `getListOfClassesForNextYear.pl`
+
+### Detailed script explanation
+
+1. `getYearLinks.pl`
     - This gets all the links for this [or] next year 
     - run before any new term to get all links for the year.
     - check the URL inside for `Next` or lack of thereof
-2. getListOfClassesForThisYear.pl
+2. `getListOfClassesForThisYear.pl`
     - This gets the class URLs for THIS year by searching the vowels
       'aeiou' and then retrieving the detailed class URLs. 
     - use this to update the list of class subjects (i.e. ECE..
       CS..) for the CURRENT year. So don't use this if you are
       currently in Summer term, and you want to update the Fall
       term.  
-3. getListOfClassesForNextYear.pl 
+3. `getListOfClassesForNextYear.pl` 
     - This gets all the class URLs for next year using the subject
-      URLs scraped from getYearLinks.pl
+      URLs scraped from `getYearLinks.pl`
     - use this to update the list of class subjects for the
       NEXT year. If you are currently in Summer term, and
       want to update Fall classes, use this.
-4. getClassDetails.pl
+4. `getClassDetails.pl`
     - This downloads all detailed class information using the
-      class_urls table's links
+      `class_urls` table's links
 
