@@ -4,7 +4,23 @@
 
     apt-get install libdbd-sqlite3-perl
 
-### How to update classes
+### To update a new year
+
+Go into Laravel's maintenance mode
+
+    php artisan down
+
+To put site back up
+
+    php artisan up
+
+### How to update the database for new semester's class information
+
+Navigate to `/database/`, then open the SQLite database:
+
+    sqlite3 database.sqlite
+
+Once you're in, you can manually delete the data from each table:
 
     DELETE FROM classes;
 
@@ -13,7 +29,7 @@
     DELETE FROM subject_urls;
 
 Next, run the following scripts [depending on whether it is current or
-next year]
+next year]. These scripts are under `/storage/scripts`
 
     ./getYearLinks.pl; ./getListOfClassesForThisYear.pl; ./getClassDetails.pl
 
