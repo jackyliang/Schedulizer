@@ -51,7 +51,7 @@ next year]. These scripts are under `/storage/scripts/`. Read below for an expla
 
     ./getYearLinks.pl; ./getListOfClassesForNextYear.pl; ./getClassDetails.pl
 
-Note: The use of "this" year defines the academic year. So "this" year starts at the Fall term and ends at the Summer term. The use of "next" year also starts at "Fall" and ends at "Summer". This is super important to know, since if you use the wrong script depending on which term you are on, you will get wrong or no data. 
+> Note: The use of "this" year defines the academic year. So "this" year starts at the Fall term and ends at the Summer term. The use of "next" year also starts at "Fall" and ends at "Summer". This is super important to know, since if you use the wrong script depending on which term you are on, you will get wrong or no data. 
 
 Example:
 
